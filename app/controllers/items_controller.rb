@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
         render :layout => ! request.xhr?
       }
       format.json {
-        render :json => @item
+        render :json => @item, :callback => params[:callback]
       }
     end
   end
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
         render :layout => ! request.xhr?
       }
       format.json {
-        render :json => {:total => @items.total, :items => @items, :as_json => items_query_url(:keyword => params[:keyword], :format => :json) }
+        render :json => {:total => @items.total, :items => @items, :as_json => items_query_url(:keyword => params[:keyword], :format => :json) }, :callback => params[:callback]
       }
     end
 
