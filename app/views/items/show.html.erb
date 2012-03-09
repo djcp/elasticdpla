@@ -1,0 +1,18 @@
+<h1>Title: <%= @item %></h1>
+
+<h2>Dublin core</h2>
+<dl>
+  <% Item::DC_PROPERTIES.each do|prop| %>
+    <dt><%= prop %>:</dt>
+    <dd><%= @item.attributes[prop].inspect %></dd>
+  <% end %>
+</dl>
+
+<h2>Record Source</h2>
+<p><%= @item.source['record_source']['organization'] %></p>
+
+<h2>Original MARC record</h2>
+<p><%= @item.original_record.inspect %></p>
+
+<h2>Raw item</h2>
+<p><%= @item.attributes.inspect %></p>

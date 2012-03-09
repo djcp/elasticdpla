@@ -1,0 +1,15 @@
+<h1>Dirt-simple search</h1>
+<p>Try fielded queries, like: "title:harvard", "subject:inher*", "title:massachusetts AND subject:management", "organization:bancroft AND identifier:http*" or simply queries like "chromosome".</p>
+<p><strong>Available Dublin Core fields:</strong> <%= Item::DC_PROPERTIES.join(', ') %></p>
+<p>There is also the "organization" field which could contain <strong><%= RecordSource.all.collect{|r| r.organization}.join(', ') %></strong>. These values define the dataset the record came from.</p>
+
+<%= form_tag(items_query_path, :id => 'search', :method => 'get') do %>
+<fieldset>
+  <%= label_tag :keyword, 'Term:' %>
+  <%= text_field_tag :keyword, params[:keyword], :size => 100 %>
+  <%= submit_tag 'Search', :id => 'button' %>
+</fieldset>
+<% end %>
+
+<div id="search_target">
+</div>

@@ -1,10 +1,12 @@
 class Item
   include Tire::Model::Persistence
 
+  DC_PROPERTIES = %W|title subject description type relation coverage creator publisher contributor rights date format identifier language audience provenance rights_holder instructional_method accrual_method accrual_periodicity accrual_policy|
+
   validates_presence_of :title
 
-  property :title, :default => []
-  property :subject, :default => []
+  property :title 
+  property :subject
   property :description
   property :type
   property :source
@@ -14,7 +16,7 @@ class Item
   property :publisher
   property :contributor
   property :rights
-  property :date
+  property :date, :type => 'date', :include_in_all => false
   property :format
   property :identifier
   property :language
@@ -25,5 +27,12 @@ class Item
   property :accrual_method
   property :accrual_periodicity
   property :accrual_policy
+
+  property :original_record, :class => [Hash]
+  property :record_source, :class => [RecordSource]
+
+  def to_s
+    "#{title.inspect}"
+  end
 
 end

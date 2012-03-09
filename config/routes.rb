@@ -1,4 +1,9 @@
 Elasticdpla::Application.routes.draw do
+  get "items/show/:id" => 'items#show', :as => 'item_show'
+  get "items" => 'items#index', :as => 'items_index'
+
+  get "items/query", :as => 'items_query'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
